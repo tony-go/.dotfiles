@@ -4,7 +4,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'github/copilot.vim'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
 
 "Note: run :CocInstall coc-tsserver"
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -31,14 +32,20 @@ set expandtab
 set smartindent
 set encoding=utf-8
 
-syntax on
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
+if !has('gui_running')
+  set t_Co=256
+endif
 let g:gruvbox_termcolors=16
-let g:gruvbox_contrast_dark="hard"
-let g:gruvbox_contrast_light="hard"
+" let g:gruvbox_contrast_dark="hard"
+" let g:gruvbox_contrast_light="hard"
+" let base16colorspace=256
+" colorscheme gruvbox 
+set background=dark
 let base16colorspace=256
-colorscheme gruvbox 
+colorscheme base16-gruvbox-dark-hard
+syntax on
 
 let mapleader = " "
 inoremap jk <Esc>
