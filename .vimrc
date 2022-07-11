@@ -19,6 +19,7 @@ Plug 'feline-nvim/feline.nvim'
 Plug 'kyazdani42/nvim-web-devicons' " for icons
 Plug 'lewis6991/gitsigns.nvim' " git icon
 
+" brew install the_silver_searcher
 Plug 'rking/ag.vim'
 
 call plug#end()
