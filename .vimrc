@@ -4,8 +4,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'github/copilot.vim'
-" Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
+
+"Note: theme
+Plug 'sheerun/vim-polyglot'
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 
 "Note: run :CocInstall coc-tsserver"
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -14,6 +16,7 @@ Plug 'preservim/nerdtree'
 "Note: see https://github.com/ryanoasis/vim-devicons
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " status line
 Plug 'feline-nvim/feline.nvim'
 Plug 'kyazdani42/nvim-web-devicons' " for icons
@@ -33,29 +36,27 @@ set expandtab
 set smartindent
 set encoding=utf-8
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set termguicolors
-if !has('gui_running')
-  set t_Co=256
-endif
-let g:gruvbox_termcolors=16
-" let g:gruvbox_contrast_dark="hard"
-" let g:gruvbox_contrast_light="hard"
-" let base16colorspace=256
-" colorscheme gruvbox 
-set background=dark
-let base16colorspace=256
-colorscheme base16-gruvbox-dark-hard
 syntax on
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+colorscheme spaceduck
 
 let mapleader = " "
 inoremap jk <Esc>
 inoremap <A-c> <Esc>
 
+" nnoremap <A-j> :m.+1<CR>==
+" nnoremap <A-k> :m.-2<CR>==
+
 nnoremap <leader>er :Vex<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>s :w<CR>
-nnoremap <leader><CR> :so ~/.vimrc<CR>
+nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-s> :Files<CR>
 
