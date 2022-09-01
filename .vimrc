@@ -43,13 +43,13 @@ set expandtab
 set smartindent
 set encoding=utf-8
 
+syntax on
+
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-
-syntax on
 
 colorscheme spaceduck
 
@@ -74,6 +74,29 @@ let NERDTreeShowHidden=1
 
 " LSP config
 lua << END
+
+local cmp = require'cmp'
+cmp.setup({
+  snippet = {
+    -- REQUIRED by nvim-cmp. get rid of it once we can
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    -- Tab immediately completes. C-n/C-p to select.
+    ['<Tab>'] = cmp.mapping.confirm({ select = true })
+  },
+  sources = cmp.config.sources({
+    -- TODO: currently snippets from lsp end up getting prioritized -- stop that!
+    { name = 'nvim_lsp' },
+  }, {
+    { name = 'path' },
+  }),
+  experimental = {
+    ghost_text = true,
+  },
+})
 
 -- Setup lspconfig.
 local on_attach = function(client, bufnr)
