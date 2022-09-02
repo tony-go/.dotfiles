@@ -162,3 +162,6 @@ require('lspconfig')['rust_analyzer'].setup{
 }
 
 END
+
+" rust
+let g:rustfmt_autosave = 1
