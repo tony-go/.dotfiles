@@ -24,13 +24,14 @@ Plug 'rking/ag.vim'
 
 " Lsp
 Plug 'neovim/nvim-lspconfig'
-Plug 'ray-x/lsp_signature.nvim'
 Plug 'hrsh7th/cmp-nvim-lsp', {'branch': 'main'}
 Plug 'hrsh7th/cmp-buffer', {'branch': 'main'}
 Plug 'hrsh7th/cmp-path', {'branch': 'main'}
 Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
+" Only because nvim-cmp _requires_ snippets
 Plug 'hrsh7th/cmp-vsnip', {'branch': 'main'}
 Plug 'hrsh7th/vim-vsnip'
+Plug 'ray-x/lsp_signature.nvim'
 
 call plug#end()
 
@@ -121,6 +122,13 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+
+  -- Get signatures (and _only_ signatures) when in argument lists.
+  require "lsp_signature".on_attach({
+    handler_opts = {
+      border = "none"
+    },
+  })
 end
 
 -- Add additional capabilities supported by nvim-cmp
@@ -132,4 +140,22 @@ require('lspconfig')['tsserver'].setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
+
+require('lspconfig')['rust_analyzer'].setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+    ["rust-analyzer"] = {
+      cargo = {
+        allFeatures = true,
+      },
+      completion = {
+	      postfix = {
+	        enable = false,
+	      },
+      },
+    },
+  },
+}
+
 END
