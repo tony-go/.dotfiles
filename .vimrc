@@ -33,6 +33,9 @@ Plug 'hrsh7th/cmp-vsnip', {'branch': 'main'}
 Plug 'hrsh7th/vim-vsnip'
 Plug 'ray-x/lsp_signature.nvim'
 
+" For Rust syntax
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 set number
