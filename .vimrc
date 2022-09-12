@@ -100,6 +100,44 @@ cmp.setup({
   experimental = {
     ghost_text = true,
   },
+  formatting = {
+        format = function(entry, vim_item)
+            vim_item.menu = ({
+                nvim_lsp = '〄',
+                nvim_lua = '',
+                luasnip  = '𝓢',
+                buffer   = '',
+            })[entry.source.name]
+            vim_item.kind = ({
+                Text          = '',
+                Method        = '',
+                Function      = '',
+                Constructor   = '',
+                Field         = '',
+                Variable      = '',
+                Class         = '',
+                Interface     = 'ﰮ',
+                Module        = '',
+                Property      = '',
+                Unit          = '',
+                Value         = '',
+                Enum          = '',
+                Keyword       = '',
+                Snippet       = '﬌',
+                Color         = '',
+                File          = '',
+                Reference     = '',
+                Folder        = '',
+                EnumMember    = '',
+                Constant      = '',
+                Struct        = '',
+                Event         = '',
+                Operator      = 'ﬦ',
+                TypeParameter = '',
+            })[vim_item.kind]
+            return vim_item
+        end
+    },
 })
 
 -- Setup lspconfig.
