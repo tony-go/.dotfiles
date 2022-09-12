@@ -92,10 +92,10 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping.confirm({ select = true })
   },
   sources = cmp.config.sources({
-    -- TODO: currently snippets from lsp end up getting prioritized -- stop that!
-    { name = 'nvim_lsp' },
-  }, {
-    { name = 'path' },
+        { name = 'nvim_lsp' },
+        { name = 'nvim_lua' },
+        { name = 'buffer' },
+        { name = 'path' },
   }),
   experimental = {
     ghost_text = true,
@@ -105,7 +105,6 @@ cmp.setup({
             vim_item.menu = ({
                 nvim_lsp = '〄',
                 nvim_lua = '',
-                luasnip  = '𝓢',
                 buffer   = '',
             })[entry.source.name]
             vim_item.kind = ({
@@ -198,7 +197,6 @@ require('lspconfig')['rust_analyzer'].setup{
     },
   },
 }
-
 END
 
 " rust
