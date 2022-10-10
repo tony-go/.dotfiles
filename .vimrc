@@ -1,16 +1,15 @@
 call plug#begin(has('nvim') ? '~/.config/nvim/plugged' : '~/.vim/plugged')
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'github/copilot.vim'
+" Disabled in the context of node12 (postman)
+" Plug 'github/copilot.vim'
 
-"Note: theme
+" Note: theme
 Plug 'sheerun/vim-polyglot'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 
 Plug 'preservim/nerdtree'
-"Note: see https://github.com/ryanoasis/vim-devicons
+" Note: see https://github.com/ryanoasis/vim-devicons
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -19,6 +18,9 @@ Plug 'feline-nvim/feline.nvim'
 Plug 'kyazdani42/nvim-web-devicons' " for icons
 Plug 'lewis6991/gitsigns.nvim' " git icon
 
+" search
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " brew install the_silver_searcher
 Plug 'rking/ag.vim'
 
@@ -169,6 +171,29 @@ local on_attach = function(client, bufnr)
       border = "none"
     },
   })
+
+  -- formatting
+  if client.name == 'tsserver' then
+    client.resolved_capabilities.document_formatting = false
+  end
+
+  -- TODO(tony): install eslint lsp
+  if client.name == 'eslint' then
+    client.resolved_capabilities.document_formatting = true
+  end
+
+  if client.name == 'clangd' then
+    client.resolved_capabilities.document_formatting = false
+  end
+
+ -- enable_formatting_for_eligible_clients
+ -- npm i -g vscode-langservers-extracted
+  if client.resolved_capabilities.document_formatting then
+    vim.api.nvim_command [[augroup Format]]
+    vim.api.nvim_command [[autocmd! * <buffer>]]
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+    vim.api.nvim_command [[augroup END]]
+  end
 end
 
 -- Add additional capabilities supported by nvim-cmp
@@ -197,6 +222,12 @@ require('lspconfig')['rust_analyzer'].setup{
     },
   },
 }
+
+-- brew install llvmj
+require("lspconfig").clangd.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
 END
 
 " rust
