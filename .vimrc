@@ -177,7 +177,6 @@ local on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
   end
 
-  -- TODO(tony): install eslint lsp
   if client.name == 'eslint' then
     client.resolved_capabilities.document_formatting = true
   end
@@ -187,7 +186,6 @@ local on_attach = function(client, bufnr)
   end
 
  -- enable_formatting_for_eligible_clients
- -- npm i -g vscode-langservers-extracted
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_command [[augroup Format]]
     vim.api.nvim_command [[autocmd! * <buffer>]]
@@ -223,8 +221,14 @@ require('lspconfig')['rust_analyzer'].setup{
   },
 }
 
--- brew install llvmj
+-- brew install llvm
 require("lspconfig").clangd.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+ -- npm i -g vscode-langservers-extracted
+require("lspconfig").eslint.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
