@@ -61,7 +61,7 @@ if exists('+termguicolors')
 endif
 
 colorscheme spaceduck
-set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline=%{FugitiveStatusline()}
 
 let mapleader = " "
 inoremap jk <Esc>
