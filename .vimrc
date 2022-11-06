@@ -5,15 +5,16 @@ Plug 'github/copilot.vim'
 
 " Note: theme
 Plug 'sheerun/vim-polyglot'
-Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+" Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+Plug 'srcery-colors/srcery-vim'
 
 Plug 'preservim/nerdtree'
 " Note: see https://github.com/ryanoasis/vim-devicons
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" status line
-Plug 'feline-nvim/feline.nvim'
+" aesthetic
+Plug 'feline-nvim/feline.nvim' " for statusline
 Plug 'kyazdani42/nvim-web-devicons' " for icons
 Plug 'lewis6991/gitsigns.nvim' " git icon
 
@@ -60,8 +61,7 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-colorscheme spaceduck
-set statusline=%{FugitiveStatusline()}
+colorscheme srcery
 
 let mapleader = " "
 inoremap jk <Esc>
@@ -90,6 +90,8 @@ let NERDTreeShowHidden=1
 
 " LSP config
 lua << END
+require('gitsigns').setup()
+require('feline').setup()
 
 local cmp = require'cmp'
 cmp.setup({
