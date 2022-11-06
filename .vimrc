@@ -1,8 +1,7 @@
 call plug#begin(has('nvim') ? '~/.config/nvim/plugged' : '~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
-" Disabled in the context of node12 (postman)
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 
 " Note: theme
 Plug 'sheerun/vim-polyglot'
@@ -21,7 +20,11 @@ Plug 'lewis6991/gitsigns.nvim' " git icon
 " search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" brew install the_silver_searcher
+" brew install fd
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" brew install the_silver_searcher (will be deleted)
 Plug 'rking/ag.vim'
 
 " Lsp
@@ -58,6 +61,7 @@ if exists('+termguicolors')
 endif
 
 colorscheme spaceduck
+set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 
 let mapleader = " "
 inoremap jk <Esc>
@@ -70,8 +74,14 @@ nnoremap <leader>er :Vex<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
+
 nnoremap <C-p> :GFiles<CR>
 nnoremap <C-s> :Files<CR>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>aa <cmd>Telescope buffers<cr>
 
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-e> :NERDTreeToggle<CR>
