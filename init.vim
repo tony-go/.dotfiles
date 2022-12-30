@@ -7,6 +7,7 @@ Plug 'github/copilot.vim'
 Plug 'sheerun/vim-polyglot'
 " Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'srcery-colors/srcery-vim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 Plug 'preservim/nerdtree'
 " Note: see https://github.com/ryanoasis/vim-devicons
@@ -62,7 +63,8 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-colorscheme srcery
+" colorscheme srcery
+colorscheme catppuccin-mocha
 
 let mapleader = " "
 inoremap jk <Esc>
