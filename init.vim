@@ -27,8 +27,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" brew install the_silver_searcher (will be deleted)
-Plug 'rking/ag.vim'
 
 " Lsp
 Plug 'neovim/nvim-lspconfig'
@@ -189,19 +187,19 @@ local on_attach = function(client, bufnr)
 
   -- formatting
   if client.name == 'tsserver' then
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
   end
 
   if client.name == 'eslint' then
-    client.resolved_capabilities.document_formatting = true
+    client.server_capabilities.documentFormattingProvider = true
   end
 
   if client.name == 'clangd' then
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
   end
 
  -- enable_formatting_for_eligible_clients
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_command [[augroup Format]]
     vim.api.nvim_command [[autocmd! * <buffer>]]
     vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
@@ -212,6 +210,7 @@ end
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities.offsetEncoding = { "utf-8" }
 
 -- npm install -g typescript typescript-language-server
 require('lspconfig')['tsserver'].setup{
@@ -240,12 +239,20 @@ require('lspconfig')['rust_analyzer'].setup{
 require("lspconfig").clangd.setup({
     on_attach = on_attach,
     capabilities = capabilities,
+     filetypes = { "c", "cpp" }
 })
 
  -- npm i -g vscode-langservers-extracted
 require("lspconfig").eslint.setup({
     on_attach = on_attach,
     capabilities = capabilities,
+})
+
+-- https://github.com/apple/sourcekit-lsp#getting-started
+require("lspconfig").sourcekit.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "swift", "objective-c", "objective-cpp" },
 })
 END
 
