@@ -11,4 +11,3 @@ command regex rlook 's/(.+)/image lookup -rn %1/'
 
 settings set target.process.follow-fork-mode child
 settings set target.skip-prologue false
-settings set target.import-std-module true
