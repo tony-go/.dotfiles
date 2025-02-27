@@ -1,5 +1,6 @@
 command script import /Users/tonygo/oss/LLDB/lldb_commands/dslldb.py
 command script import /Users/tonygo/oss/snixpc/snif.py
+command script import /Users/tonygo/oss/.dotfiles/lldb/apns.py
 
 command alias reload command script import /Users/tonygo/oss/.dotfiles/tonygo.py
 reload
