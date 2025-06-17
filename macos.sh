@@ -1,15 +1,21 @@
 # homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/tonygo/.zprofile
+(
+  echo
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+) >>/Users/tonygo/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # core deps
-brew install cmake v8 llvm coreutils nvm
+brew install cmake v8 llvm coreutils nvm clang-format htop libuv pipx watchman tree testdisk
 
 # nvim
-brew install neovim ripgrep lazygit
-git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-git clone git@github.com:tony-go/astro_config.git ~/.config/nvim/lua/user
+brew install neovim lazygit tree-sitter
+mkdir -p ~/.config/nvim
+git clone git@github.com:tony-go/nvim.git ~/.config/nvim/
+
+# Terminal
+brew install --cask warp
 
 # Remove outdated versions from the cellar.
 brew cleanup

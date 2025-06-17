@@ -40,3 +40,7 @@ eval "$(fzf --zsh)"
 # android
 export ANDROID_HOME=~/Library/Android/sdk
 
+# Created by `pipx` on 2025-06-17 08:27:48
+export PATH="$PATH:/Users/tonygo/.local/bin"
+
+source /Users/tonygo/.pymobiledevice3.zsh
