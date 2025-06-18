@@ -18,6 +18,11 @@ brew install --cask font-jetbrains-mono-nerd-font
 # Terminal
 brew install --cask warp
 
+# Aerospace
+brew install --cask nikitabobko/tap/aerospace
+mkdir -p ~/.config/aerospace
+ln -sf "$(pwd)/aerospace.toml" ~/.config/aerospace/aerospace.toml
+
 # Remove outdated versions from the cellar.
 brew cleanup
 
