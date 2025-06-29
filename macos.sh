@@ -23,8 +23,14 @@ brew install --cask nikitabobko/tap/aerospace
 mkdir -p ~/.config/aerospace
 ln -sf "$(pwd)/aerospace.toml" ~/.config/aerospace/aerospace.toml
 
+# Suspicious Package
+brew install --cask suspicious-package
+
 # Remove outdated versions from the cellar.
 brew cleanup
+
+# ios jailbreak
+sudo /bin/sh -c "$(curl -fsSL https://static.palera.in/scripts/install.sh)"
 
 # zshrc
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
