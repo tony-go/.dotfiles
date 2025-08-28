@@ -26,6 +26,9 @@ ln -sf "$(pwd)/aerospace.toml" ~/.config/aerospace/aerospace.toml
 # Suspicious Package
 brew install --cask suspicious-package
 
+# Dyld share cache extractor
+brew install keith/formulae/dyld-shared-cache-extractor
+
 # Remove outdated versions from the cellar.
 brew cleanup
 
