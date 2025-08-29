@@ -7,7 +7,7 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # core deps
-brew install cmake v8 llvm coreutils nvm clang-format htop libuv pipx watchman tree testdisk
+brew install cmake v8 llvm coreutils nvm clang-format htop libuv pipx watchman tree testdisk meson
 
 # nvim
 brew install neovim lazygit tree-sitter
