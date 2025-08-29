@@ -14,6 +14,7 @@ brew install neovim lazygit tree-sitter
 mkdir -p ~/.config/nvim
 git clone git@github.com:tony-go/nvim.git ~/.config/nvim/
 brew install --cask font-jetbrains-mono-nerd-font
+brew install ripgrep
 
 # Terminal
 brew install --cask warp
