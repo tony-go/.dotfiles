@@ -34,6 +34,7 @@ brew install keith/formulae/dyld-shared-cache-extractor
 brew install libimobiledevice
 pipx install frida-tools
 brew install blacktop/tap/ipsw
+sudo /bin/sh -c "$(curl -fsSL https://static.palera.in/scripts/install.sh)"
 
 # Remove outdated versions from the cellar.
 brew cleanup
