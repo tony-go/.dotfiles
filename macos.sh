@@ -32,6 +32,7 @@ brew install keith/formulae/dyld-shared-cache-extractor
 
 # sec ios
 brew install libimobiledevice
+pipx install frida-tools
 
 # Remove outdated versions from the cellar.
 brew cleanup
