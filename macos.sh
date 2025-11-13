@@ -46,3 +46,7 @@ sudo /bin/sh -c "$(curl -fsSL https://static.palera.in/scripts/install.sh)"
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 rm ~/.zshrc
 cp .zshrc ~/.zshrc
+
+# .gitignore
+printf ".DS_Store\nCLAUDE.md\n" > ~/.gitignore
+git config --global core.excludesfile ~/.gitignore
