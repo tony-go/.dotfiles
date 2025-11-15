@@ -1,8 +1,7 @@
-command script import /Users/tonygo/oss/LLDB/lldb_commands/dslldb.py
-command script import /Users/tonygo/oss/snixpc/snif.py
-command script import /Users/tonygo/oss/.dotfiles/lldb/apns.py
+command script import ~/oss/snixpc/snif.py
+command script import ~/oss/.dotfiles/lldb/apns.py
 
-command alias reload command script import /Users/tonygo/oss/.dotfiles/tonygo.py
+command alias reload command script import ~/oss/.dotfiles/tonygo.py
 reload
 command script add --overwrite --function tonygo.gtest gtest
 command script add --overwrite --function tonygo.make make
